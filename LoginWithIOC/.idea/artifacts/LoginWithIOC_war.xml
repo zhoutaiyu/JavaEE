@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LoginWithIOC:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="LoginWithIOC.war">
+      <element id="artifact" artifact-name="LoginWithIOC:war exploded" />
+    </root>
+  </artifact>
+</component>
