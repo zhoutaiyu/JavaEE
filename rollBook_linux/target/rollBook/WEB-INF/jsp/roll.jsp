@@ -142,7 +142,7 @@
         $("#class_Name").click(
             function () {
                 $.ajax({
-                    url: "${baseurl}" + "findPics.action",
+                    url: "${baseurl}" + "findStudentWithoutImage.action",
                     type: "POST",
                     dataType: "json",
                     data: {

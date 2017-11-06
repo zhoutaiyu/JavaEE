@@ -1,10 +1,12 @@
 package com.rollBook.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.rollBook.povo.RecordVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,12 +53,31 @@ public class AllPicController {
 	@RequestMapping(value = "/findPics", method = RequestMethod.POST)
 	public @ResponseBody List<Student> findPics(String class_Name, HttpServletRequest request) throws Exception {
 		List<Student> list = studentService.findPicsByClassSome(class_Name);
-		return list;
+		//去掉多余的创建时间、修改时间等无用数据,在这里前台只需要学号和姓名
+		List<Student> CleanList=new ArrayList<Student>();
+		for (int i = 0; i < list.size(); i++) {
+			Student s = new Student();
+			s.setSno(list.get(i).getSno());
+			s.setName(list.get(i).getName());
+			s.setImage(list.get(i).getImage());
+			CleanList.add(s);
+		}
+		return CleanList;
 	}
-	
+
+	/**
+	 * 单个查询学生相片，传递学号、姓名、照片即可
+	 * @param stu_sno
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/findPic", method = RequestMethod.POST)
 	public @ResponseBody Student findPic(String stu_sno) throws Exception {
 		Student student = studentService.findStudentBySno(stu_sno);
-		return student;
+		Student s = new Student();
+		s.setSno(student.getSno());
+		s.setName(student.getName());
+		s.setImage(student.getImage());
+		return s;
 	}
 }
