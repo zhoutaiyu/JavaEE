@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rollBook.mapper.RecordMapper" >
+  <resultMap id="BaseResultMap" type="com.rollBook.po.Record" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="tid" property="tid" jdbcType="BIGINT" />
+    <result column="sno" property="sno" jdbcType="CHAR" />
+    <result column="thing" property="thing" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="Rweek" property="rweek" jdbcType="TINYINT" />
+    <result column="Rday" property="rday" jdbcType="TINYINT" />
+    <result column="Rsection" property="rsection" jdbcType="TINYINT" />
+    <result column="mod_time" property="modTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cname, tid, sno, thing, time, Rweek, Rday, Rsection, mod_time, is_del
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rollBook.po.RecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rollBook.po.RecordExample" >
+    delete from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rollBook.po.Record" >
+    insert into record (id, cname, tid, 
+      sno, thing, time, Rweek, 
+      Rday, Rsection, mod_time, 
+      is_del)
+    values (#{id,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{tid,jdbcType=BIGINT}, 
+      #{sno,jdbcType=CHAR}, #{thing,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{rweek,jdbcType=TINYINT}, 
+      #{rday,jdbcType=TINYINT}, #{rsection,jdbcType=TINYINT}, #{modTime,jdbcType=TIMESTAMP}, 
+      #{isDel,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rollBook.po.Record" >
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="sno != null" >
+        sno,
+      </if>
+      <if test="thing != null" >
+        thing,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="rweek != null" >
+        Rweek,
+      </if>
+      <if test="rday != null" >
+        Rday,
+      </if>
+      <if test="rsection != null" >
+        Rsection,
+      </if>
+      <if test="modTime != null" >
+        mod_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="sno != null" >
+        #{sno,jdbcType=CHAR},
+      </if>
+      <if test="thing != null" >
+        #{thing,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rweek != null" >
+        #{rweek,jdbcType=TINYINT},
+      </if>
+      <if test="rday != null" >
+        #{rday,jdbcType=TINYINT},
+      </if>
+      <if test="rsection != null" >
+        #{rsection,jdbcType=TINYINT},
+      </if>
+      <if test="modTime != null" >
+        #{modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rollBook.po.RecordExample" resultType="java.lang.Integer" >
+    select count(*) from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cname != null" >
+        cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tid != null" >
+        tid = #{record.tid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sno != null" >
+        sno = #{record.sno,jdbcType=CHAR},
+      </if>
+      <if test="record.thing != null" >
+        thing = #{record.thing,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rweek != null" >
+        Rweek = #{record.rweek,jdbcType=TINYINT},
+      </if>
+      <if test="record.rday != null" >
+        Rday = #{record.rday,jdbcType=TINYINT},
+      </if>
+      <if test="record.rsection != null" >
+        Rsection = #{record.rsection,jdbcType=TINYINT},
+      </if>
+      <if test="record.modTime != null" >
+        mod_time = #{record.modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDel != null" >
+        is_del = #{record.isDel,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update record
+    set id = #{record.id,jdbcType=INTEGER},
+      cname = #{record.cname,jdbcType=VARCHAR},
+      tid = #{record.tid,jdbcType=BIGINT},
+      sno = #{record.sno,jdbcType=CHAR},
+      thing = #{record.thing,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      Rweek = #{record.rweek,jdbcType=TINYINT},
+      Rday = #{record.rday,jdbcType=TINYINT},
+      Rsection = #{record.rsection,jdbcType=TINYINT},
+      mod_time = #{record.modTime,jdbcType=TIMESTAMP},
+      is_del = #{record.isDel,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rollBook.po.Record" >
+    update record
+    <set >
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="sno != null" >
+        sno = #{sno,jdbcType=CHAR},
+      </if>
+      <if test="thing != null" >
+        thing = #{thing,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rweek != null" >
+        Rweek = #{rweek,jdbcType=TINYINT},
+      </if>
+      <if test="rday != null" >
+        Rday = #{rday,jdbcType=TINYINT},
+      </if>
+      <if test="rsection != null" >
+        Rsection = #{rsection,jdbcType=TINYINT},
+      </if>
+      <if test="modTime != null" >
+        mod_time = #{modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rollBook.po.Record" >
+    update record
+    set cname = #{cname,jdbcType=VARCHAR},
+      tid = #{tid,jdbcType=BIGINT},
+      sno = #{sno,jdbcType=CHAR},
+      thing = #{thing,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      Rweek = #{rweek,jdbcType=TINYINT},
+      Rday = #{rday,jdbcType=TINYINT},
+      Rsection = #{rsection,jdbcType=TINYINT},
+      mod_time = #{modTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

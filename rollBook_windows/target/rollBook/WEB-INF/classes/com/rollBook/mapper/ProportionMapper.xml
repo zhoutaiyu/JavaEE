@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rollBook.mapper.ProportionMapper" >
+  <resultMap id="BaseResultMap" type="com.rollBook.po.Proportion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tid" property="tid" jdbcType="BIGINT" />
+    <result column="attendance" property="attendance" jdbcType="INTEGER" />
+    <result column="performance" property="performance" jdbcType="INTEGER" />
+    <result column="task" property="task" jdbcType="INTEGER" />
+    <result column="experiment" property="experiment" jdbcType="INTEGER" />
+    <result column="other" property="other" jdbcType="INTEGER" />
+    <result column="sRadio" property="sradio" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mod_time" property="modTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, tid, attendance, performance, task, experiment, other, sRadio, create_time, mod_time, 
+    is_del
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rollBook.po.ProportionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from proportion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from proportion
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from proportion
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rollBook.po.ProportionExample" >
+    delete from proportion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rollBook.po.Proportion" >
+    insert into proportion (id, tid, attendance, 
+      performance, task, experiment, 
+      other, sRadio, create_time, 
+      mod_time, is_del)
+    values (#{id,jdbcType=INTEGER}, #{tid,jdbcType=BIGINT}, #{attendance,jdbcType=INTEGER}, 
+      #{performance,jdbcType=INTEGER}, #{task,jdbcType=INTEGER}, #{experiment,jdbcType=INTEGER}, 
+      #{other,jdbcType=INTEGER}, #{sradio,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rollBook.po.Proportion" >
+    insert into proportion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="attendance != null" >
+        attendance,
+      </if>
+      <if test="performance != null" >
+        performance,
+      </if>
+      <if test="task != null" >
+        task,
+      </if>
+      <if test="experiment != null" >
+        experiment,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+      <if test="sradio != null" >
+        sRadio,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modTime != null" >
+        mod_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="attendance != null" >
+        #{attendance,jdbcType=INTEGER},
+      </if>
+      <if test="performance != null" >
+        #{performance,jdbcType=INTEGER},
+      </if>
+      <if test="task != null" >
+        #{task,jdbcType=INTEGER},
+      </if>
+      <if test="experiment != null" >
+        #{experiment,jdbcType=INTEGER},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=INTEGER},
+      </if>
+      <if test="sradio != null" >
+        #{sradio,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        #{modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rollBook.po.ProportionExample" resultType="java.lang.Integer" >
+    select count(*) from proportion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update proportion
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tid != null" >
+        tid = #{record.tid,jdbcType=BIGINT},
+      </if>
+      <if test="record.attendance != null" >
+        attendance = #{record.attendance,jdbcType=INTEGER},
+      </if>
+      <if test="record.performance != null" >
+        performance = #{record.performance,jdbcType=INTEGER},
+      </if>
+      <if test="record.task != null" >
+        task = #{record.task,jdbcType=INTEGER},
+      </if>
+      <if test="record.experiment != null" >
+        experiment = #{record.experiment,jdbcType=INTEGER},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=INTEGER},
+      </if>
+      <if test="record.sradio != null" >
+        sRadio = #{record.sradio,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modTime != null" >
+        mod_time = #{record.modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDel != null" >
+        is_del = #{record.isDel,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update proportion
+    set id = #{record.id,jdbcType=INTEGER},
+      tid = #{record.tid,jdbcType=BIGINT},
+      attendance = #{record.attendance,jdbcType=INTEGER},
+      performance = #{record.performance,jdbcType=INTEGER},
+      task = #{record.task,jdbcType=INTEGER},
+      experiment = #{record.experiment,jdbcType=INTEGER},
+      other = #{record.other,jdbcType=INTEGER},
+      sRadio = #{record.sradio,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      mod_time = #{record.modTime,jdbcType=TIMESTAMP},
+      is_del = #{record.isDel,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rollBook.po.Proportion" >
+    update proportion
+    <set >
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="attendance != null" >
+        attendance = #{attendance,jdbcType=INTEGER},
+      </if>
+      <if test="performance != null" >
+        performance = #{performance,jdbcType=INTEGER},
+      </if>
+      <if test="task != null" >
+        task = #{task,jdbcType=INTEGER},
+      </if>
+      <if test="experiment != null" >
+        experiment = #{experiment,jdbcType=INTEGER},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=INTEGER},
+      </if>
+      <if test="sradio != null" >
+        sRadio = #{sradio,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modTime != null" >
+        mod_time = #{modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rollBook.po.Proportion" >
+    update proportion
+    set tid = #{tid,jdbcType=BIGINT},
+      attendance = #{attendance,jdbcType=INTEGER},
+      performance = #{performance,jdbcType=INTEGER},
+      task = #{task,jdbcType=INTEGER},
+      experiment = #{experiment,jdbcType=INTEGER},
+      other = #{other,jdbcType=INTEGER},
+      sRadio = #{sradio,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      mod_time = #{modTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
