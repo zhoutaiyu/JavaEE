@@ -1,8 +1,9 @@
 package com.rollBook.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Upload {
+public class Upload implements Serializable {
     private Long id;
 
     private String title;

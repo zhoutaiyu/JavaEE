@@ -1,5 +1,6 @@
 package com.rollBook.povo;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.rollBook.po.Record;
@@ -11,7 +12,7 @@ import com.rollBook.po.Student;
  * @author 周太宇
  * @time 2017年9月4日
  */
-public class StudentVo extends Student {
+public class StudentVo extends Student implements Serializable {
 	private List<Record> records;
 	private Sc sc;
 	private int no;//学生的显示序号，学号越大显示越后。

@@ -3,7 +3,7 @@ package com.rollBook.po;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Record {
+public class Record implements Serializable {
     private Integer id;
 
     private String cname;

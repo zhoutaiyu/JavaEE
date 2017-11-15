@@ -1,8 +1,9 @@
 package com.rollBook.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Teacher {
+public class Teacher implements Serializable {
     private Long id;
 
     private Long wid;

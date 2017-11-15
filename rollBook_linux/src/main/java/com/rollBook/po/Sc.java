@@ -3,7 +3,7 @@ package com.rollBook.po;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Sc{
+public class Sc implements Serializable{
     private Long id;
 
     private String sno;

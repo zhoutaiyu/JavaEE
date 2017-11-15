@@ -2,10 +2,12 @@ package com.rollBook.povo;
 
 import com.rollBook.po.Record;
 
+import java.io.Serializable;
+
 /**
  * Created by 周太宇 on 2017/9/12.
  */
-public class RecordVo extends Record {
+public class RecordVo extends Record implements Serializable {
     private int score;//这件事的分值
     private String name;//学生姓名
     private String thingName;//这件事的名字，如早退

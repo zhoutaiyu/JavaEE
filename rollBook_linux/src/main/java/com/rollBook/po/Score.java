@@ -1,8 +1,9 @@
 package com.rollBook.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Score {
+public class Score implements Serializable {
     private Integer id;
 
     private Long tid;

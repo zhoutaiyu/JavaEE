@@ -1,8 +1,9 @@
 package com.rollBook.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Proportion{
+public class Proportion implements Serializable {
     private Integer id;
 
     private Long tid;

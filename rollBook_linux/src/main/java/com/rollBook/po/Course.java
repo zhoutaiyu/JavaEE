@@ -3,7 +3,7 @@ package com.rollBook.po;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Course {
+public class Course implements Serializable {
     private Long id;
 
     private String cname;

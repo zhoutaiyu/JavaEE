@@ -3,12 +3,14 @@ package com.rollBook.povo;
 import com.rollBook.po.Proportion;
 import com.rollBook.po.Score;
 
+import java.io.Serializable;
+
 /**
  * @author 周太宇
  * @date 2017年8月30日 下午6:40:18
  **/
 
-public class ScoreAndProVo {
+public class ScoreAndProVo implements Serializable {
 	private Score score;
 	private Proportion proportion;
 
