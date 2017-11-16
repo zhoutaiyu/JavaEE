@@ -61,6 +61,34 @@ public class BookDaoImpl implements BookDao {
     }
 
     /**
+     * 插入图书
+     *
+     * @param book
+     */
+    public void insert(Book book) {
+        con = LinkConnection.getConnection();
+        sql = "insert into bookta values(?,?,?,?)";
+        try {
+            statement = con.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Statement");
+        }
+        try {
+            //设置参数
+            statement.setString(1, book.getIsbn());
+            statement.setString(2, book.getTitle());
+            statement.setString(3, book.getType());
+            statement.setDouble(4, book.getPrice());
+            //执行不允许带参数
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("可能是参数赋值出现了问题");
+        }
+    }
+
+    /**
      * 更新图书价格
      *
      * @param isbn
@@ -89,7 +117,7 @@ public class BookDaoImpl implements BookDao {
 
     public List<Book> findByType(String type) {
         con = LinkConnection.getConnection();
-        sql = "select * from bookta where type='"+type+"'";
+        sql = "select * from bookta where type='" + type + "'";
         try {
             s = con.createStatement();
         } catch (SQLException e) {
