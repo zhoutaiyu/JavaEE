@@ -11,7 +11,7 @@
 		</commentGenerator>
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/ac" userId="root"
+			connectionURL="jdbc:mysql://localhost:3306/e3mall" userId="root"
 			password="1234">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
@@ -27,7 +27,7 @@
 		</javaTypeResolver>
 
 		<!-- targetProject:生成PO类的位置 -->
-		<javaModelGenerator targetPackage="com.rollBook.po"
+		<javaModelGenerator targetPackage="com.e3mall.po"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
@@ -35,29 +35,30 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- targetProject:mapper映射文件生成的位置 -->
-		<sqlMapGenerator targetPackage="com.rollBook.mapper" 
+		<sqlMapGenerator targetPackage="com.e3mall.mapper"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.rollBook.mapper" 
+			targetPackage="com.e3mall.mapper"
 			targetProject=".\src">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table tableName="admin"></table>
-		<table tableName="course"></table>
-		<table tableName="sc"></table>
-		<table tableName="score"></table>
-		<table tableName="student"></table>
-		<table tableName="teacher"></table>
-		<table tableName="Upload"></table>
-		<table tableName="record"></table>
-		<table tableName="proportion"></table>
-		<!--<table tableName="bookta"></table>-->
+		<table tableName="tb_content"></table>
+		<table tableName="tb_content_category"></table>
+		<table tableName="tb_item"></table>
+		<table tableName="tb_item_cat"></table>
+		<table tableName="tb_item_desc"></table>
+		<table tableName="tb_item_param"></table>
+		<table tableName="tb_item_param_item"></table>
+		<table tableName="tb_order"></table>
+		<table tableName="tb_order_item"></table>
+		<table tableName="tb_order_shipping"></table>
+		<table tableName="tb_user"></table>
 		<!-- 	<table tableName="sys_permission"></table> -->
 		<!-- <table schema="" tableName="sys_user"></table>
 			<table schema="" tableName="sys_role"></table>
